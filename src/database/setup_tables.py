@@ -1,5 +1,5 @@
 import sqlalchemy as db
-from sqlalchemy import Column, ForeignKey, Integer, String, PickleType, insert, select, bindparam
+from sqlalchemy import Column, ForeignKey, Integer, String, Date
 from sqlalchemy.orm import declarative_base, relationship
 
 from make_engine import make_engine
@@ -22,10 +22,17 @@ class RoomCategory(Base):
 class Room(Base):
     __tablename__ = "room"
 
-    number = Column(Integer, primary_key=True)
+    room_number = Column(Integer, primary_key=True)
     category = Column(String(64), ForeignKey("roomcategory.name"))
 
-    
+
+class Reservation(Base):
+    __tablename__ = "reservation"
+
+    reservation_number = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(64))
+    start_date = Column(Date)
+    end_date = Column(Date)
     
 
 # Create database engine
