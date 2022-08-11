@@ -1,6 +1,6 @@
 import sqlalchemy as db
 
-def make_engine(echo=False):
+def make_engine(echo=False) -> db.engine.Engine:
     config = {
         'host': 'localhost',
         'port': 3306,
