@@ -18,9 +18,10 @@ async def room():
         Room.room_number,
         Room.category
     ])
-    engine = make_engine()
-    conn = engine.connect()
-    results = conn.execute(stmt).fetchall()
+    
+    with make_engine().connect() as conn:
+        results = conn.execute(stmt).fetchall()
+    
     return results
 
 
