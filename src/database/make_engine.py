@@ -8,7 +8,7 @@ def make_engine(echo=False, local=False) -> db.engine.Engine:
         'password': 'helloworld',
         'database': 'testapp'
     }
-
+    # If not called from inside docker container, use localhost
     if local:
         config.update({'host': 'localhost'})
 
