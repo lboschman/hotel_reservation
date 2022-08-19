@@ -37,7 +37,7 @@ class Reservation(Base):
 
 if __name__=="__main__":
     # Create database engine
-    engine = make_engine(echo=True)
+    engine = make_engine(echo=True, local=True)
     connection = engine.connect()
 
 

@@ -1,13 +1,16 @@
 import sqlalchemy as db
 
-def make_engine(echo=False) -> db.engine.Engine:
+def make_engine(echo=False, local=False) -> db.engine.Engine:
     config = {
-        'host': 'localhost',
+        'host': 'hotel-database',
         'port': 3306,
         'user': 'root',
         'password': 'helloworld',
         'database': 'testapp'
     }
+
+    if local:
+        config.update({'host': 'localhost'})
 
     db_user = config.get('user')
     db_pwd = config.get('password')
