@@ -23,3 +23,16 @@ async def room():
     results = conn.execute(stmt).fetchall()
     return results
 
+
+@app.get("/room/{room_number}")
+async def room_number(room_number: int):
+    stmt = select([
+        Room,
+        RoomCategory.persons
+    ]).join(RoomCategory).where(Room.room_number == room_number)
+    
+    with make_engine().connect() as conn:
+        results = conn.execute(stmt).fetchall()
+    
+    return results
+
