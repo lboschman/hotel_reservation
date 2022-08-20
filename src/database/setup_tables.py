@@ -3,6 +3,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Date
 from sqlalchemy.orm import declarative_base, relationship
 
 from database.make_engine import make_engine
+# from ..main import room_number
 
 # Create table objects
 Base = declarative_base()
@@ -33,7 +34,8 @@ class Reservation(Base):
     name = Column(String(64))
     start_date = Column(Date)
     end_date = Column(Date)
-    
+    room = Column(Integer, ForeignKey("room.room_number"))
+
 
 if __name__=="__main__":
     # Create database engine
