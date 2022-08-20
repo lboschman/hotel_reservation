@@ -37,3 +37,23 @@ async def room_number(room_number: int):
     
     return results
 
+
+@app.get("/reservation")
+async def all_reservation():
+    stmt = select([Reservation]).join(Room).join(RoomCategory)
+    
+    with make_engine().connect() as conn:
+        results = conn.execute(stmt).fetchall()
+    
+    return results
+
+
+@app.get("/reservation/{reservation_number}")
+async def reservation(reservation_number):
+    stmt = select([Reservation]).join(Room).join(
+        RoomCategory).where(Reservation.reservation_number == reservation_number)
+    
+    with make_engine().connect() as conn:
+        results = conn.execute(stmt).fetchall()
+    
+    return results
